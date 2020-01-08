@@ -1,0 +1,82 @@
+server:
+    port: 1234
+spring: 
+    application: 
+        name: encrypt
+    shardingsphere:
+        datasource:
+            name: ds
+            ds:
+                type: com.alibaba.druid.pool.DruidDataSource
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                url: jdbc:mysql://127.0.0.1:3306/encrypt?useUnicode=true&characterEncoding=UTF-8&failOverReadOnly=false&useSSL=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+                username: root
+                password: root123
+                initial-size: 10
+                max-active: 10
+                min-idle: 10
+                max-wait: 60000
+                pool-prepared-statements: true
+                max-pool-prepared-statement-per-connection-size: 20
+                time-between-eviction-runs-millis: 60000
+                min-evictable-idle-time-millis: 300000
+                validation-query: SELECT 1
+                test-while-idle: true
+                test-on-borrow: false
+                test-on-return: false
+                filter:
+                    stat:
+                        log-slow-sql: true
+                        slow-sql-millis: 1000
+                        merge-sql: true
+                    wall:
+                        config:
+                        multi-statement-allow: true
+        encrypt:
+            encryptors:
+                encryptor_aes:
+                    type: aes
+                    props:
+                        aes.key.value: 123456
+            tables:
+                user_info:
+                    columns:
+                        # 逻辑列名
+                        papers_no:
+                            # 实际明文列
+                            plainColumn: papers_no
+                            # 实际密文列
+                            cipherColumn: encrypt_papers_no
+                            # assistedQueryColumn: user_assisted
+                            encryptor: encryptor_aes
+        props:
+            sql.show: true
+            # 直接查询明文还是先查询密文再解密为明文
+            query.with.cipher.column: true
+            
+            
+#spring.shardingsphere.props.query.with.cipher.column=true
+
+#
+#encryptRule:
+#	encryptors:
+#		# 加密器，可以实现指定接口自定义
+#		aes_encryptor:
+#		# 可选aes和MD5
+#		type: aes
+#    props:
+#      aes.key.value: 123456abc
+#	tables:
+#		users:
+#			columns:
+#				papers_no:
+#					# 明文列
+#					plainColumn: papers_no
+#					# 密文列
+#					cipherColumn: papers_no_encrypt
+#					# 加密器
+#					encryptor: aes_encryptor
+#
+#props:
+#	# 设置为false，可以让新增的数据自动添加到密文列，查询依然使用明文
+#	query.with.cipher.column: false
