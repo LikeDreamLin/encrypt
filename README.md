@@ -1,2 +1,0 @@
-# encrypt
-使用中间件shardingsphere实现数据库敏感列脱敏的demo
