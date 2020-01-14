@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.hzfi</groupId>
+    <groupId>com.imdzz</groupId>
     <artifactId>encrypt</artifactId>
     <version>1.0-SNAPSHOT</version>
 

@@ -44,7 +44,7 @@ spring:
                         # 逻辑列名
                         papers_no:
                             # 实际明文列
-                            plainColumn: decrypt_papers_no
+                            plainColumn: papers_no
                             # 实际密文列
                             cipherColumn: encrypt_papers_no
                             # assistedQueryColumn: user_assisted

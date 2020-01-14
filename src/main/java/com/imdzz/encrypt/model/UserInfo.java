@@ -1,4 +1,4 @@
-package com.hzfi.encrypt.model;
+package com.imdzz.encrypt.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

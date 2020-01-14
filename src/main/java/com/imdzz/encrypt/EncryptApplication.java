@@ -1,4 +1,4 @@
-package com.hzfi.encrypt;
+package com.imdzz.encrypt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
