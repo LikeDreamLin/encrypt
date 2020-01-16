@@ -15,11 +15,13 @@ spring:
                 initial-size: 10
                 max-active: 10
                 min-idle: 10
-                max-wait: 60000
+                max-wait: 6000
                 pool-prepared-statements: true
                 max-pool-prepared-statement-per-connection-size: 20
                 time-between-eviction-runs-millis: 60000
-                min-evictable-idle-time-millis: 300000
+                # 连接的最大生存时间应该小于数据库的连接超时时间（mysql默认28800），确保每一个连接都是应用主动关闭的。
+                # 否则有可能造成应用获取到数据库已关闭的连接。
+                min-evictable-idle-time-millis: 20000
                 validation-query: SELECT 1
                 test-while-idle: true
                 test-on-borrow: false
